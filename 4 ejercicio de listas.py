@@ -38,7 +38,7 @@ dia_1 = [[120, 36.5, 80, 98], [135, 37.2, 92, 96], [118, 36.8, 78, 99], [142, 38
 dia_2 = [[122, 36.7, 82, 97], [138, 38.5, 96, 94], [116, 36.5, 76, 99], [145, 39.2, 98, 92], [128, 37.3, 88, 96]]
 dia_3 = [[119, 36.4, 79, 98], [140, 39.1, 99, 93], [120, 36.9, 80, 98], [148, 39.8, 102, 91], [124, 37.1, 84, 97]]
 
-dias = ['dia_1', 'dia_2', 'dia_3']
+dias = [dia_1, dia_2, dia_3]
 
 # Rangos normales
 rangos = {
@@ -94,6 +94,7 @@ for x in range(len(pacientes)): #01234 paciente x
 print('\t\t------ Alertas críticas ------')
 contador = -1
 contador_alertas = []
+nombres_dias = [f'Día {i+1}' for i in range(len(dias))]
 def alertas_criticas(dia):
     lista = []
     global contador
@@ -103,35 +104,35 @@ def alertas_criticas(dia):
         for y in range(len(signos)): # 0123 signos
             if y == signos.index("Presión"):
                 z = dia[x][y]
-                if 90 <= z >= 130:
+                if 90 <= z <= 130:
                     continue
                 else:
                     suma += 1
-                    print(f'\t\t\t🚨 ALERTA: {pacientes[x]} - {dias[contador]} - {signos[y]} fuera de rango: {z}')
+                    print(f'\t\t\t🚨 ALERTA: {pacientes[x]} - {nombres_dias[contador]} - {signos[y]} fuera de rango: {z}')
             
             elif y == signos.index("Temperatura"):
                 z = dia[x][y]
-                if 36.0 <= z >= 37.5:
+                if 36.0 <= z <= 37.5:
                     continue
                 else:
                     suma += 1
-                    print(f'\t\t\t🚨 ALERTA: {pacientes[x]} - {dias[contador]} - {signos[y]} fuera de rango: {z}')
+                    print(f'\t\t\t🚨 ALERTA: {pacientes[x]} - {nombres_dias[contador]} - {signos[y]} fuera de rango: {z}')
                 
             elif y == signos.index("Pulso"):
                 z = dia[x][y]
-                if 60 <= z >= 100:
+                if 60 <= z <= 100:
                     continue
                 else:
                     suma += 1
-                    print(f'\t\t\t🚨 ALERTA: {pacientes[x]} - {dias[contador]} - {signos[y]} fuera de rango: {z}')
+                    print(f'\t\t\t🚨 ALERTA: {pacientes[x]} - {nombres_dias[contador]} - {signos[y]} fuera de rango: {z}')
                 
             elif y == signos.index("Oxigenación"):
                 z = dia[x][y]
-                if 95 <= z >= 100:
+                if 95 <= z <= 100:
                     continue
                 else:
                     suma += 1
-                    print(f'\t\t\t🚨 ALERTA: {pacientes[x]} - {dias[contador]} - {signos[y]} fuera de rango: {z}')
+                    print(f'\t\t\t🚨 ALERTA: {pacientes[x]} - {nombres_dias[contador]} - {signos[y]} fuera de rango: {z}')
         lista.append(suma)
     contador_alertas.append(lista)     
             
@@ -191,7 +192,7 @@ def comprando(dia1, dia2):
             elif y == signos.index("Oxigenación"):
                 if dia1[x][y] < dia2[x][y]:
                     print(f'\t\t\t\t{signos[y]}: {dia1[x][y]} --> {dia2[x][y]}: Mejoro')
-                elif dia1[x][y] < dia2[x][y]:
+                elif dia1[x][y] > dia2[x][y]:
                     print(f'\t\t\t\t{signos[y]}: {dia1[x][y]} --> {dia2[x][y]}: Empeoro')
                 else:
                      print(f'\t\t\t\t{signos[y]}: {dia1[x][y]} --> {dia2[x][y]}: Estable')
