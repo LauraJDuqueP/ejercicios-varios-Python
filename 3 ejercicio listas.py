@@ -100,17 +100,3 @@ x = min(lista)
 print(f'\t\tLa región más equilibrada es {regiones[lista.index(x)]} con {x} de diferencia entre su categoría más alta y más baja')
 
 
-'''
-    categorias = ["Lácteos", "Carnes", "Frutas", "Bebidas", "Limpieza", "Panadería"]
-
-ventas_trimestre = [
-    [4500, 8200, 3100, 6700, 2900, 5100],  # Norte
-    [3800, 7500, 4200, 5900, 3400, 4800],  # Sur
-    [5200, 9100, 2800, 7200, 3100, 5600],  # Oriente
-    [4100, 6800, 3900, 6100, 2700, 4300],  # Occidente
-]
-
-regiones = ["Norte", "Sur", "Oriente", "Occidente"]
-meta_trimestral = 5000  # por categoría por región
-presupuesto_region = 30000  # presupuesto total por región
-'''
