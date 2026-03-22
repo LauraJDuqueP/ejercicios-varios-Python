@@ -118,31 +118,34 @@ print('\n\t\t------ 4. Ranking completo de estudiantes de mayor a menor nota fin
 nuevo_ranking = []
 # estudiantes = ["Ana", "Bruno", "Carmen", "Diego", "Elena", "Fernando"]
 # print(ponderado_notas)  [9.03, 6.23, 9.23, 7.45, 5.23, 8.13]
-estudiantes2 = ["Ana", "Bruno", "Carmen", "Diego", "Elena", "Fernando"]
-for x in range(len(estudiantes2)): # x recorre por cada estudiante
+estudiantes_copia = estudiantes[:]
+ponderado_notas_copia = ponderado_notas[:]
+for x in range(len(estudiantes_copia)): # x recorre por cada estudiante
     posicion = 1
-    for y in range(len(ponderado_notas)): # y recorre las notas
-        if ponderado_notas[x] > ponderado_notas[y]:
+    for y in range(len(ponderado_notas_copia)): # y recorre las notas
+        if ponderado_notas_copia[x] > ponderado_notas_copia[y]:
             posicion +=1 
     nuevo_ranking.append(posicion)
 
 ranking = []
 
-while len(ponderado_notas) > 0:
-    
-    for x in range(len(ponderado_notas)):
-        n = max(ponderado_notas)
-        z = ponderado_notas.index(n)
-        y = [ponderado_notas[z], estudiantes2[z]]
+while len(ponderado_notas_copia) > 0:
+        n = max(ponderado_notas_copia)
+        z = ponderado_notas_copia.index(n)
+        y = [ponderado_notas_copia[z], estudiantes_copia[z]]
         ranking.append(y)
-        del ponderado_notas[z]
-        del estudiantes2[z]
-    break
+        del ponderado_notas_copia[z]
+        del estudiantes_copia[z]
+       
 
-#print(ranking)
+print(ranking)
 
-for x in ranking:
-    print(f'\t\t\t{x[1]} : {x[0]}')
+for posicion, dato in enumerate(ranking, 1):
+    print(f'\t\t\t{posicion}° {dato[1]} : {dato[0]}')
+
+# puedes usar enumerate() o un for como este
+#for x in ranking:
+#   print(f'\t\t\t{x[1]} : {x[0]}')
 
 
 # 5 Estudiantes en riesgo académico — los que tienen más de 2 asignaturas por debajo de 6.0
